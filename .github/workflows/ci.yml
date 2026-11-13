@@ -1,0 +1,17 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # gradio is only needed for the web demo, so skip it in CI to keep builds fast
+      - run: pip install scikit-learn pandas numpy matplotlib joblib pytest
+      - run: pytest -v
+      - name: Smoke-test training on the sample data
+        run: python train.py

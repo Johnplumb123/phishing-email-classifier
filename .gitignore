@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.joblib
+# Large downloaded datasets: keep only the small sample in git
+data/*
+!data/sample_emails.csv
+.gradio/
+flagged/
